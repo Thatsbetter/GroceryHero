@@ -250,7 +250,7 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                           CustomProductCard(
                                               imagePath:
                                               "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/kochen-backen.png",
-                                              productName: "Cake and Backing"),
+                                              productName: "Cake and Baking"),
                                           CustomProductCard(
                                               imagePath:
                                               "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/getraenke-genussmittel.png",
@@ -427,7 +427,7 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                               "Monster Energy 0,5 l"),
                                           CustomProductCard(
                                               imagePath:
-                                              "https://ww1.freelogovectors.net/wp-content/uploads/2022/01/penny-logo-freelogovectors.net_.png?lossy=1&resize=382%2C382&ssl=1",
+                                              "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
                                               productName: "More Products >"),
                                         ],
                                       ),
