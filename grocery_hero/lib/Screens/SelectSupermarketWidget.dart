@@ -87,7 +87,7 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                             ),
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                  EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -108,7 +108,7 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                       decoration: InputDecoration(
                                         hintText: '[Some hint text...]',
                                         hintStyle:
-                                        MainTheme.of(context).bodySmall,
+                                            MainTheme.of(context).bodySmall,
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
@@ -140,7 +140,7 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                           ),
                                         ),
                                         focusedErrorBorder:
-                                        UnderlineInputBorder(
+                                            UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 1,
@@ -190,31 +190,31 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              25, 0, 0, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  25, 0, 0, 0),
                                           child: Text(
                                             'Categories',
                                             textAlign: TextAlign.start,
                                             style: MainTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                              fontFamily: 'Poppins',
-                                              color: MainTheme.of(context)
-                                                  .primaryBtnText,
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600,
-                                              useGoogleFonts: GoogleFonts
-                                                  .asMap()
-                                                  .containsKey(MainTheme.of(
-                                                  context)
-                                                  .bodyMediumFamily),
-                                            ),
+                                                  fontFamily: 'Poppins',
+                                                  color: MainTheme.of(context)
+                                                      .primaryBtnText,
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(MainTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                                ),
                                           ),
                                         ),
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              10, 0, 0, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 0, 0, 0),
                                           child: Icon(
                                             Icons.arrow_forward_ios,
                                             color: MainTheme.of(context)
@@ -231,8 +231,8 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                     child: Container(
                                       width: MediaQuery.of(context).size.width,
                                       height:
-                                      MediaQuery.of(context).size.height *
-                                          0.18,
+                                          MediaQuery.of(context).size.height *
+                                              0.18,
                                       decoration: BoxDecoration(
                                         color: Color(0x00FFFFFF),
                                         borderRadius: BorderRadius.circular(12),
@@ -241,19 +241,22 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                         padding: EdgeInsets.zero,
                                         primary: false,
                                         scrollDirection: Axis.horizontal,
-                                        children: [
+                                        children: const [
                                           CustomProductCard(
+                                              price: "1.50",
                                               imagePath:
-                                              "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/obst-gemuese.png",
+                                                  "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/obst-gemuese.png",
                                               productName:
-                                              "Fruits and Veggies"),
+                                                  "Fruits and Veggies"),
                                           CustomProductCard(
+                                              price: "1.50",
                                               imagePath:
-                                              "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/kochen-backen.png",
+                                                  "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/kochen-backen.png",
                                               productName: "Cake and Baking"),
                                           CustomProductCard(
+                                              price: "1.50",
                                               imagePath:
-                                              "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/getraenke-genussmittel.png",
+                                                  "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/getraenke-genussmittel.png",
                                               productName: "Drinks"),
                                         ],
                                       ),
@@ -273,31 +276,31 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              25, 0, 0, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  25, 0, 0, 0),
                                           child: Text(
                                             'Edeka',
                                             textAlign: TextAlign.start,
                                             style: MainTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                              fontFamily: 'Poppins',
-                                              color: MainTheme.of(context)
-                                                  .primaryBtnText,
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600,
-                                              useGoogleFonts: GoogleFonts
-                                                  .asMap()
-                                                  .containsKey(MainTheme.of(
-                                                  context)
-                                                  .bodyMediumFamily),
-                                            ),
+                                                  fontFamily: 'Poppins',
+                                                  color: MainTheme.of(context)
+                                                      .primaryBtnText,
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(MainTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                                ),
                                           ),
                                         ),
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              10, 0, 0, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 0, 0, 0),
                                           child: Icon(
                                             Icons.arrow_forward_ios,
                                             color: MainTheme.of(context)
@@ -314,8 +317,8 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                     child: Container(
                                       width: MediaQuery.of(context).size.width,
                                       height:
-                                      MediaQuery.of(context).size.height *
-                                          0.18,
+                                          MediaQuery.of(context).size.height *
+                                              0.18,
                                       decoration: BoxDecoration(
                                         color: Color(0x00FFFFFF),
                                         borderRadius: BorderRadius.circular(12),
@@ -326,21 +329,25 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                         scrollDirection: Axis.horizontal,
                                         children: [
                                           CustomProductCard(
+                                              price: "1.20",
                                               imagePath:
-                                              "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/6518610a-3d8c-4225-a5c3-2aeb4e5114c9.webp",
+                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/6518610a-3d8c-4225-a5c3-2aeb4e5114c9.webp",
                                               productName: "Pizza Margherita"),
                                           CustomProductCard(
+                                              price: "1.50",
                                               imagePath:
-                                              "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/148c7e37-89a9-4001-a55d-d8481d736654.webp",
+                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/148c7e37-89a9-4001-a55d-d8481d736654.webp",
                                               productName:
-                                              "Dr. Oetker Knusper-Müsli"),
+                                                  "Dr. Oetker Knusper-Müsli"),
                                           CustomProductCard(
+                                              price: "1.50",
                                               imagePath:
-                                              "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/5165f507-ee50-4f54-bfa9-159183426ab1.webp",
+                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/5165f507-ee50-4f54-bfa9-159183426ab1.webp",
                                               productName: "Coca Cola 1l"),
                                           CustomProductCard(
+                                              price: "1.40",
                                               imagePath:
-                                              "https://verbund.edeka/verbund/presse/mediathek/edeka_preview-logo.jpg?impolicy=4x3&imwidth=500&imdensity=1",
+                                                  "https://verbund.edeka/verbund/presse/mediathek/edeka_preview-logo.jpg?impolicy=4x3&imwidth=500&imdensity=1",
                                               productName: "More Products >"),
                                         ],
                                       ),
@@ -360,31 +367,31 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              25, 0, 0, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  25, 0, 0, 0),
                                           child: Text(
                                             'Penny',
                                             textAlign: TextAlign.start,
                                             style: MainTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                              fontFamily: 'Poppins',
-                                              color: MainTheme.of(context)
-                                                  .primaryBtnText,
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.w600,
-                                              useGoogleFonts: GoogleFonts
-                                                  .asMap()
-                                                  .containsKey(MainTheme.of(
-                                                  context)
-                                                  .bodyMediumFamily),
-                                            ),
+                                                  fontFamily: 'Poppins',
+                                                  color: MainTheme.of(context)
+                                                      .primaryBtnText,
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(MainTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                                ),
                                           ),
                                         ),
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              10, 0, 0, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 0, 0, 0),
                                           child: Icon(
                                             Icons.arrow_forward_ios,
                                             color: MainTheme.of(context)
@@ -401,8 +408,8 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                     child: Container(
                                       width: MediaQuery.of(context).size.width,
                                       height:
-                                      MediaQuery.of(context).size.height *
-                                          0.18,
+                                          MediaQuery.of(context).size.height *
+                                              0.18,
                                       decoration: BoxDecoration(
                                         color: Color(0x00FFFFFF),
                                         borderRadius: BorderRadius.circular(12),
@@ -411,23 +418,27 @@ class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
                                         padding: EdgeInsets.zero,
                                         primary: false,
                                         scrollDirection: Axis.horizontal,
-                                        children: [
+                                        children: const [
                                           CustomProductCard(
+                                              price: "1.50",
                                               imagePath:
-                                              "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f0e97564-1ef4-4479-bc57-c07ccdacd15e.webp",
+                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f0e97564-1ef4-4479-bc57-c07ccdacd15e.webp",
                                               productName: "Lorenz Crunchips"),
                                           CustomProductCard(
+                                              price: "1.50",
                                               imagePath:
-                                              "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f1837268-5860-4290-b12f-f5c03aadc290.webp",
+                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f1837268-5860-4290-b12f-f5c03aadc290.webp",
                                               productName: "Nutella 450g"),
                                           CustomProductCard(
+                                              price: "1.50",
                                               imagePath:
-                                              "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
+                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
                                               productName:
-                                              "Monster Energy 0,5 l"),
+                                                  "Monster Energy 0,5 l"),
                                           CustomProductCard(
+                                              price: "1.50",
                                               imagePath:
-                                              "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
+                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
                                               productName: "More Products >"),
                                         ],
                                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_hero/Screens/MapScreenCopyWidget.dart';
+import 'package:grocery_hero/Screens/ProductDetails.dart';
 import 'package:grocery_hero/Screens/SelectSupermarketWidget.dart';
 
 void main() {
@@ -55,8 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.local_grocery_store),
+            label: 'Buy',
           ),
           // Add more BottomNavigationBarItems for additional screens
         ],
