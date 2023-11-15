@@ -1,42 +1,28 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:grocery_hero/Helper/MainTheme.dart';
 import 'package:grocery_hero/Helper/flutter_flow_google_map.dart';
-import 'package:grocery_hero/Screens/ShowShoppingItems.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class MapScreenWidget extends StatefulWidget {
-  const MapScreenWidget({Key? key}) : super(key: key);
+class MapScreen extends StatefulWidget {
+  const MapScreen({Key? key}) : super(key: key);
 
   @override
-  _MapScreenWidgetState createState() => _MapScreenWidgetState();
+  _MapScreenState createState() => _MapScreenState();
 }
 
-class _MapScreenWidgetState extends State<MapScreenWidget> {
+class _MapScreenState extends State<MapScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   Set<Marker> markers = Set();
 
-  void _onMarkerTapped() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ShowShoppingItems(),
-      ),
-    );
-  }
-
   @override
   void initState() {
     super.initState();
-    markers.add(
-      Marker(
-          markerId: MarkerId("1"),
-          position: LatLng(13.106061, -59.613158),
-          onTap: _onMarkerTapped),
-    );
   }
 
   @override
@@ -46,144 +32,118 @@ class _MapScreenWidgetState extends State<MapScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomInset: false,
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 1,
-        decoration: BoxDecoration(
-          color: MainTheme.of(context).secondaryBackground,
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: Image.asset(
-              'assets/images/Group_6821.png',
-            ).image,
-          ),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(0),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: MainTheme.of(context).sigmaX,
-              sigmaY: MainTheme.of(context).sigmaY,
+      body: Stack(
+        children: [
+          Align(
+            alignment: AlignmentDirectional(0.00, 0.00),
+            child:GoogleMap(
+              initialCameraPosition: const CameraPosition(
+                target: LatLng(13.106061, -59.613158),
+                zoom: 15,
+              ),
+              markers: markers,
+              onMapCreated: (controller) {
+                googleMapsController.complete(controller);
+              },
+              myLocationEnabled: true,
+              myLocationButtonEnabled: false,
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4,
-                          color: Colors.white.withOpacity(0.5),
-                          offset: Offset(0, 2),
+          ),
+          Align(
+            alignment: AlignmentDirectional(-0.11, -0.86),
+            child: Container(
+              width: MediaQuery.sizeOf(context).width * 0.8,
+              height: MediaQuery.sizeOf(context).height * 0.07,
+              decoration: BoxDecoration(
+                color: Color(0xFFFAECE4),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 4,
+                    color: Color(0x33000000),
+                    offset: Offset(0, 2),
+                  )
+                ],
+                borderRadius: BorderRadius.circular(15),
+                shape: BoxShape.rectangle,
+              ),
+              child: Align(
+                alignment: AlignmentDirectional(0.00, 0.00),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(2, 0, 2, 0),
+                  child: Text(
+                    'Shopping lists around you',
+                    textAlign: TextAlign.center,
+                    style: MainTheme.of(context).bodySmall.override(
+                          fontFamily: 'Lexend Deca',
+                          color: MainTheme.of(context).black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
                         ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 44, 0, 10),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Hello',
-                                    style: MainTheme.of(context)
-                                        .displaySmall
-                                        .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: MainTheme.of(context).black,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        4, 0, 0, 0),
-                                    child: Text(
-                                      '[Name]',
-                                      style: MainTheme.of(context)
-                                          .displaySmall
-                                          .override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: MainTheme.of(context).black,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 4, 0, 0),
-                                  child: Text(
-                                    'Here are Shopping Lists near you',
-                                    textAlign: TextAlign.center,
-                                    style: MainTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: MainTheme.of(context).black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                 ),
-                Expanded(
-                  flex: 7,
-                  child: Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(0),
-                        bottomRight: Radius.circular(0),
-                        topLeft: Radius.circular(8),
-                        topRight: Radius.circular(8),
-                      ),
-                    ),
-                    child: GoogleMap(
-                      initialCameraPosition: const CameraPosition(
-                        target: LatLng(13.106061, -59.613158),
-                        zoom: 15,
-                      ),
-                      markers: markers,
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-        ),
+          Align(
+            alignment: AlignmentDirectional(-0.83, 0.92),
+            child: GestureDetector(
+              onTap: () {
+                // Add your onTap logic here
+                _goToMyLocation(); // For example, you can call the _goToMyLocation method
+              },
+              child: Container(
+                width: MediaQuery.sizeOf(context).width * 0.16,
+                height: MediaQuery.sizeOf(context).width * 0.16,
+                decoration: BoxDecoration(
+                  color: Color(0xFF479AD1),
+                  shape: BoxShape.circle,
+                ),
+                child: Align(
+                  alignment: AlignmentDirectional(0.00, 0.00),
+                  child: FaIcon(
+                    FontAwesomeIcons.locationDot,
+                    color: MainTheme.of(context).primaryBtnText,
+                    size: 24,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  void _goToMyLocation() async {
+    var status = await Permission.location.request();
+    if (status == PermissionStatus.granted) {
+      final GoogleMapController controller = await googleMapsController.future;
+      final LatLng myLocation = await getCurrentLocation();
+
+      if (myLocation != null) {
+        controller.animateCamera(CameraUpdate.newLatLng(myLocation));
+      } else {
+        print("Unable to get current location.");
+      }
+    } else {
+      print("Location permission denied");
+    }
+  }
+
+  Future<LatLng> getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition();
+    return LatLng(position.latitude, position.longitude);
   }
 }

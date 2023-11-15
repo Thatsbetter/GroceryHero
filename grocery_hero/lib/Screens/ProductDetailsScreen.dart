@@ -10,19 +10,26 @@ import 'package:grocery_hero/Helper/FlutterFlowWidgets.dart';
 import '../Helper/MainTheme.dart';
 import 'CustomProductCard.dart';
 
-class ProductViewWidget extends StatefulWidget {
-  const ProductViewWidget({
+class ProductDetailsScreen extends StatefulWidget {
+  final String mainProductPrice;
+  final String mainProductName;
+  final String mainProductImagePath;
+
+  const ProductDetailsScreen({
     Key? key,
     this.productModel,
+    required this.mainProductPrice,
+    required this.mainProductName,
+    required this.mainProductImagePath,
   }) : super(key: key);
 
   final int? productModel;
 
   @override
-  _ProductViewWidgetState createState() => _ProductViewWidgetState();
+  _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
 }
 
-class _ProductViewWidgetState extends State<ProductViewWidget> {
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   int countControllerValue = 0;
 
@@ -38,6 +45,10 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var similarImagePath =
+        "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp";
+    var similarProductName = "Monster Energy 0,5 l";
+    var similarProductPrice = "1.50";
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: MainTheme.of(context).secondaryBackground,
@@ -96,17 +107,17 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(16, 20, 16, 16),
+                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 16),
                             child: Hero(
                               tag: 'mainImage',
                               transitionOnUserGestures: true,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: Image.network(
-                                  'https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/148c7e37-89a9-4001-a55d-d8481d736654.webp',
+                                  widget.mainProductImagePath,
                                   width: MediaQuery.of(context).size.width,
                                   height:
-                                  MediaQuery.of(context).size.height * 0.30,
+                                      MediaQuery.of(context).size.height * 0.30,
                                   fit: BoxFit.fitHeight,
                                 ),
                               ),
@@ -132,21 +143,20 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                                 Expanded(
                                   flex: 1,
                                   child: Text(
-                                    'Product Name',
+                                    widget.mainProductName,
                                     style: MainTheme.of(context)
                                         .headlineSmall
                                         .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 30,
-                                    ),
+                                          fontFamily: 'Poppins',
+                                          fontSize: 30,
+                                        ),
                                   ),
                                 ),
                                 Expanded(
                                   flex: 1,
                                   child: Text(
-                                    'Price',
-                                    style:
-                                    MainTheme.of(context).titleLarge,
+                                    widget.mainProductPrice + " €",
+                                    style: MainTheme.of(context).titleLarge,
                                   ),
                                 ),
                               ],
@@ -159,7 +169,7 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                                EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
@@ -177,8 +187,8 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0, 0, 12, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 12, 0),
                                           child: Icon(
                                             Icons.sticky_note_2_outlined,
                                             color: MainTheme.of(context)
@@ -188,8 +198,8 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                                         ),
                                         Text(
                                           'Product Detail',
-                                          style: MainTheme.of(context)
-                                              .bodyMedium,
+                                          style:
+                                              MainTheme.of(context).bodyMedium,
                                         ),
                                       ],
                                     ),
@@ -198,15 +208,15 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                                           5, 0, 0, 0),
                                       child: Container(
                                         width:
-                                        MediaQuery.of(context).size.width,
+                                            MediaQuery.of(context).size.width,
                                         height:
-                                        MediaQuery.of(context).size.height *
-                                            0.04,
+                                            MediaQuery.of(context).size.height *
+                                                0.04,
                                         decoration: BoxDecoration(),
                                         child: Text(
                                           'Lorem ipsum dolor sit amet, consectetur adipiscing...',
-                                          style: MainTheme.of(context)
-                                              .bodySmall,
+                                          style:
+                                              MainTheme.of(context).bodySmall,
                                         ),
                                       ),
                                     ),
@@ -215,12 +225,12 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              5, 0, 0, 0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5, 0, 0, 0),
                                           child: Text(
                                             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                                            style: MainTheme.of(context)
-                                                .bodySmall,
+                                            style:
+                                                MainTheme.of(context).bodySmall,
                                           ),
                                         ),
                                       ],
@@ -230,14 +240,14 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                                       tapBodyToExpand: true,
                                       tapBodyToCollapse: true,
                                       headerAlignment:
-                                      ExpandablePanelHeaderAlignment.center,
+                                          ExpandablePanelHeaderAlignment.center,
                                       hasIcon: true,
                                       expandIcon: Icons.chevron_right_rounded,
                                       collapseIcon:
-                                      Icons.keyboard_arrow_down_rounded,
+                                          Icons.keyboard_arrow_down_rounded,
                                       iconSize: 24,
-                                      iconColor: MainTheme.of(context)
-                                          .secondaryText,
+                                      iconColor:
+                                          MainTheme.of(context).secondaryText,
                                     ),
                                   ),
                                 ),
@@ -246,7 +256,7 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -259,12 +269,12 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                                     style: MainTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                      fontFamily: 'Poppins',
-                                      color: MainTheme.of(context)
-                                          .primaryBtnText,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                          fontFamily: 'Poppins',
+                                          color: MainTheme.of(context)
+                                              .primaryBtnText,
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                   ),
                                 ),
                               ],
@@ -272,7 +282,7 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 45),
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 45),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height * 0.18,
@@ -286,9 +296,9 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                                 scrollDirection: Axis.horizontal,
                                 children: [
                                   CustomProductCard(
-                                      imagePath:
-                                      "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
-                                      productName: "Monster Energy 0,5 l"),
+                                      price: similarProductPrice,
+                                      imagePath: similarImagePath,
+                                      productName: similarProductName),
                                 ],
                               ),
                             ),
@@ -329,14 +339,13 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                             height: double.infinity,
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: Colors.blue,
-                            textStyle: MainTheme.of(context)
-                                .titleSmall
-                                .override(
-                              fontFamily: 'Poppins',
-                              color: Colors.white,
-                            ),
+                            textStyle:
+                                MainTheme.of(context).titleSmall.override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                    ),
                             borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1,

@@ -5,14 +5,14 @@ import 'package:grocery_hero/Helper/CustomButton.dart';
 import 'package:grocery_hero/Helper/FlutterFlowIconButton.dart';
 import 'package:grocery_hero/Helper/MainTheme.dart';
 
-class EnterPaidAmount extends StatefulWidget {
-  const EnterPaidAmount({Key? key}) : super(key: key);
+class EnterPaidAmountScreen extends StatefulWidget {
+  const EnterPaidAmountScreen({Key? key}) : super(key: key);
 
   @override
-  _EnterPaidAmountState createState() => _EnterPaidAmountState();
+  _EnterPaidAmountScreenState createState() => _EnterPaidAmountScreenState();
 }
 
-class _EnterPaidAmountState extends State<EnterPaidAmount> {
+class _EnterPaidAmountScreenState extends State<EnterPaidAmountScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController? textController;
 
