@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_hero/Screens/MapScreenCopyWidget.dart';
+import 'package:grocery_hero/Screens/MapScreen.dart';
 import 'package:grocery_hero/Screens/ProductDetails.dart';
 import 'package:grocery_hero/Screens/SelectSupermarketWidget.dart';
 
@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    MapScreenCopyWidget(),
+    MapScreen(),
     SelectSupermarketWidget(),
   ];
 
