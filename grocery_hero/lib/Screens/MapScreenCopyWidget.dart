@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:grocery_hero/Helper/MainTheme.dart';
 import 'package:grocery_hero/Helper/flutter_flow_google_map.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MapScreenCopyWidget extends StatefulWidget {
   const MapScreenCopyWidget({Key? key}) : super(key: key);
@@ -46,16 +48,19 @@ class _MapScreenCopyWidgetState extends State<MapScreenCopyWidget> {
         children: [
           Align(
             alignment: AlignmentDirectional(0.00, 0.00),
-            child: GoogleMap(
+            child:GoogleMap(
               initialCameraPosition: const CameraPosition(
                 target: LatLng(13.106061, -59.613158),
                 zoom: 15,
               ),
               markers: markers,
+              onMapCreated: (controller) {
+                googleMapsController.complete(controller);
+              },
+              myLocationEnabled: true,
+              myLocationButtonEnabled: false,
             ),
           ),
-          // Generated code for this Container Widget...
-          // Generated code for this Container Widget...
           Align(
             alignment: AlignmentDirectional(-0.11, -0.86),
             child: Container(
@@ -81,11 +86,11 @@ class _MapScreenCopyWidgetState extends State<MapScreenCopyWidget> {
                     'Shopping lists around you',
                     textAlign: TextAlign.center,
                     style: MainTheme.of(context).bodySmall.override(
-                      fontFamily: 'Lexend Deca',
-                      color: MainTheme.of(context).black,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                    ),
+                          fontFamily: 'Lexend Deca',
+                          color: MainTheme.of(context).black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
                   ),
                 ),
               ),
@@ -93,19 +98,25 @@ class _MapScreenCopyWidgetState extends State<MapScreenCopyWidget> {
           ),
           Align(
             alignment: AlignmentDirectional(-0.83, 0.92),
-            child: Container(
-              width: MediaQuery.sizeOf(context).width * 0.16,
-              height: MediaQuery.sizeOf(context).width * 0.16,
-              decoration: BoxDecoration(
-                color: Color(0xFF479AD1),
-                shape: BoxShape.circle,
-              ),
-              child: Align(
-                alignment: AlignmentDirectional(0.00, 0.00),
-                child: FaIcon(
-                  FontAwesomeIcons.mapMarkerAlt,
-                  color: MainTheme.of(context).primaryBtnText,
-                  size: 24,
+            child: GestureDetector(
+              onTap: () {
+                // Add your onTap logic here
+                _goToMyLocation(); // For example, you can call the _goToMyLocation method
+              },
+              child: Container(
+                width: MediaQuery.sizeOf(context).width * 0.16,
+                height: MediaQuery.sizeOf(context).width * 0.16,
+                decoration: BoxDecoration(
+                  color: Color(0xFF479AD1),
+                  shape: BoxShape.circle,
+                ),
+                child: Align(
+                  alignment: AlignmentDirectional(0.00, 0.00),
+                  child: FaIcon(
+                    FontAwesomeIcons.locationDot,
+                    color: MainTheme.of(context).primaryBtnText,
+                    size: 24,
+                  ),
                 ),
               ),
             ),
@@ -113,5 +124,26 @@ class _MapScreenCopyWidgetState extends State<MapScreenCopyWidget> {
         ],
       ),
     );
+  }
+
+  void _goToMyLocation() async {
+    var status = await Permission.location.request();
+    if (status == PermissionStatus.granted) {
+      final GoogleMapController controller = await googleMapsController.future;
+      final LatLng myLocation = await getCurrentLocation();
+
+      if (myLocation != null) {
+        controller.animateCamera(CameraUpdate.newLatLng(myLocation));
+      } else {
+        print("Unable to get current location.");
+      }
+    } else {
+      print("Location permission denied");
+    }
+  }
+
+  Future<LatLng> getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition();
+    return LatLng(position.latitude, position.longitude);
   }
 }
