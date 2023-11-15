@@ -7,14 +7,14 @@ import 'package:grocery_hero/Helper/FlutterFlowWidgets.dart';
 import '../Helper/FlutterFlowCountController.dart';
 import '../Helper/MainTheme.dart';
 
-class ViewCart extends StatefulWidget {
-  const ViewCart({Key? key}) : super(key: key);
+class ViewCartScreen extends StatefulWidget {
+  const ViewCartScreen({Key? key}) : super(key: key);
 
   @override
-  _ViewCartState createState() => _ViewCartState();
+  _ViewCartScreenState createState() => _ViewCartScreenState();
 }
 
-class _ViewCartState extends State<ViewCart> {
+class _ViewCartScreenState extends State<ViewCartScreen> {
   int countControllerValue = 0;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();

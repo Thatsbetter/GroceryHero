@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_hero/Helper/MainTheme.dart';
 
-import 'ProductDetails.dart';
+import 'ProductDetailsScreen.dart';
 
 class CustomProductCard extends StatelessWidget {
   final String imagePath;
@@ -25,7 +25,7 @@ class CustomProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetailsWidget(
+            builder: (context) => ProductDetailsScreen(
                 mainProductPrice: price,
                 mainProductName: productName,
                 mainProductImagePath: imagePath

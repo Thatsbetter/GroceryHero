@@ -10,12 +10,12 @@ import 'package:grocery_hero/Helper/FlutterFlowWidgets.dart';
 import '../Helper/MainTheme.dart';
 import 'CustomProductCard.dart';
 
-class ProductDetailsWidget extends StatefulWidget {
+class ProductDetailsScreen extends StatefulWidget {
   final String mainProductPrice;
   final String mainProductName;
   final String mainProductImagePath;
 
-  const ProductDetailsWidget({
+  const ProductDetailsScreen({
     Key? key,
     this.productModel,
     required this.mainProductPrice,
@@ -26,10 +26,10 @@ class ProductDetailsWidget extends StatefulWidget {
   final int? productModel;
 
   @override
-  _ProductDetailsWidgetState createState() => _ProductDetailsWidgetState();
+  _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
 }
 
-class _ProductDetailsWidgetState extends State<ProductDetailsWidget> {
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   int countControllerValue = 0;
 

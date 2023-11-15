@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_hero/Screens/MapScreen.dart';
-import 'package:grocery_hero/Screens/ProductDetails.dart';
-import 'package:grocery_hero/Screens/SelectSupermarketWidget.dart';
+import 'package:grocery_hero/Screens/ProductDetailsScreen.dart';
+import 'package:grocery_hero/Screens/SelectSupermarketScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _screens = [
     MapScreen(),
-    SelectSupermarketWidget(),
+    SelectSupermarketScreen(),
   ];
 
   @override

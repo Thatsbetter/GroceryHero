@@ -5,15 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_hero/Helper/MainTheme.dart';
 import 'package:grocery_hero/Screens/CustomProductCard.dart';
 
-class SelectSupermarketWidget extends StatefulWidget {
-  const SelectSupermarketWidget({Key? key}) : super(key: key);
+class SelectSupermarketScreen extends StatefulWidget {
+  const SelectSupermarketScreen({Key? key}) : super(key: key);
 
   @override
-  _SelectSupermarketWidgetState createState() =>
-      _SelectSupermarketWidgetState();
+  _SelectSupermarketScreenState createState() =>
+      _SelectSupermarketScreenState();
 }
 
-class _SelectSupermarketWidgetState extends State<SelectSupermarketWidget> {
+class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
   var textController;
   var sharedPrefs;
   final scaffoldKey = GlobalKey<ScaffoldState>();

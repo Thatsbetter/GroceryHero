@@ -6,14 +6,14 @@ import 'package:grocery_hero/Helper/CustomButton.dart';
 import 'package:grocery_hero/Helper/FlutterFlowIconButton.dart';
 import 'package:grocery_hero/Helper/MainTheme.dart';
 
-class ShowShoppingItems extends StatefulWidget {
-  const ShowShoppingItems({Key? key}) : super(key: key);
+class ShowShoppingItemsScreen extends StatefulWidget {
+  const ShowShoppingItemsScreen({Key? key}) : super(key: key);
 
   @override
-  _ShowShoppingItemsState createState() => _ShowShoppingItemsState();
+  _ShowShoppingItemsScreenState createState() => _ShowShoppingItemsScreenState();
 }
 
-class _ShowShoppingItemsState extends State<ShowShoppingItems> {
+class _ShowShoppingItemsScreenState extends State<ShowShoppingItemsScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool? checkboxValue;
