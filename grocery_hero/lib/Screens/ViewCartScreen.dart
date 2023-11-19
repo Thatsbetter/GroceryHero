@@ -74,8 +74,8 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
           borderRadius: BorderRadius.circular(0),
           child: BackdropFilter(
             filter: ImageFilter.blur(
-              sigmaX: 15,
-              sigmaY: 15,
+              sigmaX: MainTheme.of(context).sigmaX,
+              sigmaY: MainTheme.of(context).sigmaY,
             ),
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(1, 0, 0, 0),
