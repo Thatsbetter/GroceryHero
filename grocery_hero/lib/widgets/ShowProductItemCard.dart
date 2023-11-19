@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_hero/Helper/MainTheme.dart';
 
-import 'ProductDetailsScreen.dart';
+import '../Screens/ProductDetailsScreen.dart';
 
-class CustomProductCard extends StatelessWidget {
+class ShowProductItemCard extends StatelessWidget {
   final String imagePath;
   final String productName;
   final String price;
   final VoidCallback? onTap;
 
-  const CustomProductCard(
+  const ShowProductItemCard(
       {Key? key,
       required this.imagePath,
       required this.productName,
@@ -21,7 +21,7 @@ class CustomProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: onTap ?? () {
         Navigator.push(
           context,
           MaterialPageRoute(
