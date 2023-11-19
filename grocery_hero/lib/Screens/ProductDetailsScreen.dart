@@ -8,7 +8,7 @@ import 'package:grocery_hero/Helper/FlutterFlowCountController.dart';
 import 'package:grocery_hero/Helper/FlutterFlowWidgets.dart';
 
 import '../Helper/MainTheme.dart';
-import 'CustomProductCard.dart';
+import '../widgets/ShowProductItemCard.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final String mainProductPrice;
@@ -73,8 +73,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 borderRadius: BorderRadius.circular(0),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(
-                    sigmaX: 15,
-                    sigmaY: 15,
+                    sigmaX: MainTheme.of(context).sigmaX,
+                    sigmaY: MainTheme.of(context).sigmaY,
                   ),
                   child: SingleChildScrollView(
                     child: Padding(
@@ -94,12 +94,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      25, 20, 0, 0),
-                                  child: Icon(
-                                    Icons.arrow_back_ios,
-                                    color: Colors.black,
-                                    size: 40,
+                                  padding: EdgeInsetsDirectional.fromSTEB(25, 20, 0, 0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pop(context); // Navigate back when the icon is tapped
+                                    },
+                                    child: Icon(
+                                      Icons.arrow_back_ios,
+                                      color: Colors.black,
+                                      size: 40,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -295,7 +299,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 primary: false,
                                 scrollDirection: Axis.horizontal,
                                 children: [
-                                  CustomProductCard(
+                                  ShowProductItemCard(
                                       price: similarProductPrice,
                                       imagePath: similarImagePath,
                                       productName: similarProductName),
