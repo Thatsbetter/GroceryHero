@@ -127,14 +127,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               ),
                             ),
                           ),
-//                          Padding(
-//                            padding:
-//                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-//                            child: Center(child: Text(
-//                              'Category',
-//                              style: FlutterFlowTheme.of(context).titleLarge,
-//                            ))
-//                          ),
                           Container(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * 0.1,
