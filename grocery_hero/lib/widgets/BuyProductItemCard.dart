@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery_hero/Helper/MainTheme.dart';
 
 import '../Screens/ProductDetailsScreen.dart';
+import '../models/Product.dart';
 
 class BuyProductItemCard extends StatelessWidget {
   final String imagePath;
@@ -25,9 +26,10 @@ class BuyProductItemCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => ProductDetailsScreen(
-                  mainProductPrice: price,
-                  mainProductName: productName,
-                  mainProductImagePath: imagePath),
+                  mainProduct: Product(
+                      price: price,
+                      productName: productName,
+                      imagePath: imagePath)),
             ),
           );
         },
