@@ -247,6 +247,7 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                         children: [
                                           ShowProductItemCard(
                                               product: Product(
+                                                  productId: 15488,
                                                   price: "1.50",
                                                   imagePath:
                                                       "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/obst-gemuese.png",
@@ -254,6 +255,7 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                                       "Fruits and Veggies")),
                                           ShowProductItemCard(
                                               product: Product(
+                                                  productId: 15588,
                                                   price: "1.50",
                                                   imagePath:
                                                       "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/kochen-backen.png",
@@ -261,6 +263,7 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                                       "Cake and Baking")),
                                           ShowProductItemCard(
                                               product: Product(
+                                                  productId: 874,
                                                   price: "1.50",
                                                   imagePath:
                                                       "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/getraenke-genussmittel.png",
@@ -337,6 +340,7 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                         children: [
                                           ShowProductItemCard(
                                               product: Product(
+                                                  productId: 54878,
                                                   price: "1.20",
                                                   imagePath:
                                                       "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/6518610a-3d8c-4225-a5c3-2aeb4e5114c9.webp",
@@ -344,6 +348,7 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                                       "Pizza Margherita")),
                                           ShowProductItemCard(
                                               product: Product(
+                                                  productId: 57992,
                                                   price: "1.50",
                                                   imagePath:
                                                       "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/148c7e37-89a9-4001-a55d-d8481d736654.webp",
@@ -351,12 +356,14 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                                       "Dr. Oetker Knusper-Müsli")),
                                           ShowProductItemCard(
                                               product: Product(
+                                                  productId: 8722,
                                                   price: "1.50",
                                                   imagePath:
                                                       "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/5165f507-ee50-4f54-bfa9-159183426ab1.webp",
                                                   productName: "Coca Cola 1l")),
                                           ShowProductItemCard(
                                             product: Product(
+                                              productId: 648867,
                                               price: "1.40",
                                               imagePath:
                                                   "https://verbund.edeka/verbund/presse/mediathek/edeka_preview-logo.jpg?impolicy=4x3&imwidth=500&imdensity=1",
@@ -442,6 +449,7 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                         children: [
                                           ShowProductItemCard(
                                               product: Product(
+                                                  productId: 68655,
                                                   price: "1.50",
                                                   imagePath:
                                                       "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f0e97564-1ef4-4479-bc57-c07ccdacd15e.webp",
@@ -449,12 +457,14 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                                       "Lorenz Crunchips")),
                                           ShowProductItemCard(
                                               product: Product(
+                                                  productId: 825454,
                                                   price: "1.50",
                                                   imagePath:
                                                       "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f1837268-5860-4290-b12f-f5c03aadc290.webp",
                                                   productName: "Nutella 450g")),
                                           ShowProductItemCard(
                                               product: Product(
+                                                  productId: 54878,
                                                   price: "1.50",
                                                   imagePath:
                                                       "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
@@ -462,6 +472,7 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                                       "Monster Energy 0,5 l")),
                                           ShowProductItemCard(
                                             product: Product(
+                                              productId: 57878,
                                               price: "1.50",
                                               imagePath:
                                                   "https://revistaprogresiv.ro/sites/default/files/news/images/penny_logo_002.jpg",
