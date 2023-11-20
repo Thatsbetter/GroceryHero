@@ -307,9 +307,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 scrollDirection: Axis.horizontal,
                                 children: [
                                   ShowProductItemCard(
-                                      price: similarProductPrice,
-                                      imagePath: similarImagePath,
-                                      productName: similarProductName),
+                                      product: Product(
+                                          price: similarProductPrice,
+                                          imagePath: similarImagePath,
+                                          productName: similarProductName)),
                                 ],
                               ),
                             ),

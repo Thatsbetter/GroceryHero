@@ -6,17 +6,10 @@ import 'package:grocery_hero/models/Product.dart';
 import '../Screens/ProductDetailsScreen.dart';
 
 class ShowProductItemCard extends StatelessWidget {
-  final String imagePath;
-  final String productName;
-  final String price;
+  final Product product;
   final VoidCallback? onTap;
 
-  const ShowProductItemCard(
-      {Key? key,
-      required this.imagePath,
-      required this.productName,
-      required this.price,
-      this.onTap})
+  const ShowProductItemCard({Key? key, required this.product, this.onTap})
       : super(key: key);
 
   @override
@@ -27,11 +20,8 @@ class ShowProductItemCard extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ProductDetailsScreen(
-                    mainProduct: Product(
-                        price: price,
-                        productName: productName,
-                        imagePath: imagePath)),
+                builder: (context) =>
+                    ProductDetailsScreen(mainProduct: product),
               ),
             );
           },
@@ -57,13 +47,13 @@ class ShowProductItemCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.network(
-                this.imagePath,
+                product.imagePath,
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
               ),
               Text(
-                this.productName,
+                product.productName,
                 style: MainTheme.of(context).bodyMedium.override(
                       fontFamily: 'Poppins',
                       useGoogleFonts: GoogleFonts.asMap()

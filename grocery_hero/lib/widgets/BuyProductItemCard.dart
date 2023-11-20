@@ -5,17 +5,10 @@ import '../Screens/ProductDetailsScreen.dart';
 import '../models/Product.dart';
 
 class BuyProductItemCard extends StatelessWidget {
-  final String imagePath;
-  final String productName;
-  final String price;
+  final Product product;
   final VoidCallback? onTap;
 
-  const BuyProductItemCard(
-      {Key? key,
-      required this.imagePath,
-      required this.productName,
-      required this.price,
-      this.onTap})
+  const BuyProductItemCard({Key? key, required this.product, this.onTap})
       : super(key: key);
 
   @override
@@ -25,11 +18,7 @@ class BuyProductItemCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProductDetailsScreen(
-                  mainProduct: Product(
-                      price: price,
-                      productName: productName,
-                      imagePath: imagePath)),
+              builder: (context) => ProductDetailsScreen(mainProduct: product),
             ),
           );
         },
@@ -59,7 +48,7 @@ class BuyProductItemCard extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: Image.network(
-                      imagePath,
+                      product.imagePath,
                       width: 100,
                       height: 100,
                       fit: BoxFit.cover,
@@ -71,7 +60,7 @@ class BuyProductItemCard extends StatelessWidget {
                   child: Align(
                     alignment: AlignmentDirectional(0.00, 0.00),
                     child: Text(
-                      productName,
+                      product.productName,
                       style: MainTheme.of(context).bodyMedium,
                     ),
                   ),
@@ -87,7 +76,7 @@ class BuyProductItemCard extends StatelessWidget {
                         child: Align(
                           alignment: AlignmentDirectional(1.00, 0.00),
                           child: Text(
-                            price + ' €',
+                            product.price + ' €',
                             style: MainTheme.of(context).bodyMedium,
                           ),
                         ),
