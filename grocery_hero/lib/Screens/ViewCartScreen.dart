@@ -179,7 +179,7 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
                                 size: 20,
                               ),
                               countBuilder: (count) => Text(
-                                countControllerValue.toString(),
+                                quantity.toString(),
                                 style: MainTheme.of(context).bodyMedium,
                               ),
                               count: countControllerValue,
