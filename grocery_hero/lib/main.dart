@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_hero/Screens/MapScreen.dart';
-import 'package:grocery_hero/Screens/ProductDetailsScreen.dart';
 import 'package:grocery_hero/Screens/SelectSupermarketScreen.dart';
+import 'package:grocery_hero/Screens/ViewCartScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _screens = [
     MapScreen(),
     SelectSupermarketScreen(),
+    ViewCartScreen()
   ];
 
   @override
@@ -58,6 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.local_grocery_store),
             label: 'Buy',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.card_travel_outlined),
+            label: 'Cart',
           ),
           // Add more BottomNavigationBarItems for additional screens
         ],
