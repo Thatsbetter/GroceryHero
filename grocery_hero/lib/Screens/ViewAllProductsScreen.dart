@@ -219,17 +219,17 @@ class _ViewAllProductWidgetState extends State<ViewAllProductWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: ProductList(products: [
                       Product(
+                          productId: 83768752,
                           price: "1.50",
                           imagePath:
-                          "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f1837268-5860-4290-b12f-f5c03aadc290.webp",
-                          productName: "Nutella 450g"
-                      ),
+                              "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f1837268-5860-4290-b12f-f5c03aadc290.webp",
+                          productName: "Nutella 450g"),
                       Product(
+                        productId: 2427,
                         price: "1.50",
                         imagePath:
-                        "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
-                        productName:
-                        "Monster Energy 0,5 l",
+                            "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
+                        productName: "Monster Energy 0,5 l",
                       ),
                       // Add more products as needed
                     ]),
