@@ -25,9 +25,7 @@ class Cart {
     } else {
       // Add a new product to the cart
       _cartItems[product.productId] = CartItem(
-        productName: product.productName,
-        productPrice: product.price,
-        productImagePath: product.imagePath,
+        product: product,
         quantity: quantity,
       );
     }
@@ -45,15 +43,11 @@ class Cart {
 }
 
 class CartItem {
-  final String productName;
-  final String productPrice;
-  final String productImagePath;
+  final Product product;
   int quantity;
 
   CartItem({
-    required this.productName,
-    required this.productPrice,
-    required this.productImagePath,
+    required this.product,
     required this.quantity,
   });
 }

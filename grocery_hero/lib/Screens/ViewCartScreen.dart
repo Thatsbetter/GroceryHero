@@ -18,6 +18,12 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
   int countControllerValue = 0;
   Cart _cart = Cart();
 
+  void removeFromCart(int productId) {
+    setState(() {
+      _cart.removeFromCart(productId);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,24 +80,14 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: _cart.cartItems.values.map((cartItem) {
-            return buildCartItem(
-              productName: cartItem.productName,
-              productImage: cartItem.productImagePath,
-              quantity: cartItem.quantity,
-              price: cartItem.productPrice.toString(),
-            );
+            return buildCartItem(cartItem: cartItem);
           }).toList(),
         ),
       ),
     );
   }
 
-  Widget buildCartItem({
-    required String productName,
-    required String productImage,
-    required int quantity,
-    required String price,
-  }) {
+  Widget buildCartItem({required CartItem cartItem}) {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
       child: Container(
@@ -124,7 +120,7 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.network(
-                      productImage,
+                      cartItem.product.imagePath,
                       width: 74,
                       height: 74,
                       fit: BoxFit.cover,
@@ -138,11 +134,27 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
                 padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Align(
+                      alignment: AlignmentDirectional(1.00, 0.00),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                        child: GestureDetector(
+                          onTap: () {
+                            removeFromCart(cartItem.product.productId);
+                          },
+                          child: Icon(
+                            Icons.cancel_sharp,
+                            color: MainTheme.of(context).error,
+                            size: 28,
+                          ),
+                        ),
+                      ),
+                    ),
                     Text(
-                      productName,
+                      cartItem.product.productName,
                       style: MainTheme.of(context).titleMedium,
                     ),
                     Padding(
@@ -179,7 +191,7 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
                                 size: 20,
                               ),
                               countBuilder: (count) => Text(
-                                quantity.toString(),
+                                cartItem.quantity.toString(),
                                 style: MainTheme.of(context).bodyMedium,
                               ),
                               count: countControllerValue,
@@ -189,7 +201,7 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
                             ),
                           ),
                           Text(
-                            price + ' €',
+                            cartItem.product.price + ' €',
                             style: MainTheme.of(context).titleMedium,
                           ),
                         ],
