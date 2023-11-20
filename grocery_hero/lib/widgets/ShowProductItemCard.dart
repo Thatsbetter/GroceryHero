@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_hero/Helper/MainTheme.dart';
+import 'package:grocery_hero/models/Product.dart';
 
 import '../Screens/ProductDetailsScreen.dart';
 
@@ -21,18 +22,19 @@ class ShowProductItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap ?? () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProductDetailsScreen(
-                mainProductPrice: price,
-                mainProductName: productName,
-                mainProductImagePath: imagePath
-            ),
-          ),
-        );
-      },
+      onTap: onTap ??
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductDetailsScreen(
+                    mainProduct: Product(
+                        price: price,
+                        productName: productName,
+                        imagePath: imagePath)),
+              ),
+            );
+          },
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(6, 0, 6, 0),
         child: Container(
