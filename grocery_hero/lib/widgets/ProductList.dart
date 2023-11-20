@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'BuyProductItemCard.dart';
-import 'Product.dart';
+import '../models/Product.dart';
 
 class ProductList extends StatelessWidget {
   final List<Product> products;
