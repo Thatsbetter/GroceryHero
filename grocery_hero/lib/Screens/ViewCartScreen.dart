@@ -70,6 +70,7 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 1,
       child: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 35),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: _cart.cartItems.values.map((cartItem) {
