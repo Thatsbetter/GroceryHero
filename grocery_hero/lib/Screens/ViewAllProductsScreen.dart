@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../Helper/MainTheme.dart';
-import '../widgets/Product.dart';
+import '../models/Product.dart';
 import '../widgets/ProductList.dart';
 
 class ViewAllProductWidget extends StatefulWidget {
