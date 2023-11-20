@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
+import '../models/Product.dart';
 import 'BuyProductItemCard.dart';
-import 'Product.dart';
 
 class ProductList extends StatelessWidget {
   final List<Product> products;
@@ -31,11 +31,7 @@ class ProductList extends StatelessWidget {
               .map(
                 (product) => Expanded(
                   flex: 1,
-                  child: BuyProductItemCard(
-                    price: product.price,
-                    imagePath: product.imagePath,
-                    productName: product.productName,
-                  ),
+                  child: BuyProductItemCard(product: product),
                 ),
               )
               .toList(),

@@ -12,6 +12,7 @@ abstract class MainTheme {
   late Color primaryColor;
   late Color dangerColor;
   late Color black;
+  late Color error;
   late Color secondaryColor;
   late Color tertiaryColor;
   late Color alternate;
@@ -158,6 +159,7 @@ class LightModeTheme extends MainTheme {
   late Color primaryColor = const Color(0xFF4B39EF);
   late Color dangerColor = Colors.redAccent;
   late Color black = Colors.black;
+  late Color error = const Color(0xFFDA3D3D);
   late Color secondaryColor = const Color(0xFF39D2C0);
   late Color tertiaryColor = const Color(0xFFEE8B60);
   late Color alternate = const Color(0xFFFF5963);

@@ -100,7 +100,6 @@ class _MapScreenState extends State<MapScreen> {
             alignment: AlignmentDirectional(-0.83, 0.92),
             child: GestureDetector(
               onTap: () {
-                // Add your onTap logic here
                 _goToMyLocation(); // For example, you can call the _goToMyLocation method
               },
               child: Container(

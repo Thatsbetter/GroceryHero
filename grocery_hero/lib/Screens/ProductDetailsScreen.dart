@@ -6,24 +6,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_hero/Helper/FlutterFlowCountController.dart';
 import 'package:grocery_hero/Helper/FlutterFlowWidgets.dart';
+import 'package:grocery_hero/models/Product.dart';
 
 import '../Helper/MainTheme.dart';
+import '../models/Cart.dart';
 import '../widgets/ShowProductItemCard.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  final String mainProductPrice;
-  final String mainProductName;
-  final String mainProductImagePath;
+  final Product mainProduct;
 
   const ProductDetailsScreen({
     Key? key,
-    this.productModel,
-    required this.mainProductPrice,
-    required this.mainProductName,
-    required this.mainProductImagePath,
+    required this.mainProduct,
   }) : super(key: key);
-
-  final int? productModel;
 
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
@@ -43,12 +38,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     super.dispose();
   }
 
+  void addToCart() {
+    Cart().addToCart(
+      product: widget.mainProduct,
+      quantity: countControllerValue,
+    );
+
+    final snackBar = SnackBar(
+      content: Text('Product added to cart'),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     var similarImagePath =
         "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp";
     var similarProductName = "Monster Energy 0,5 l";
     var similarProductPrice = "1.50";
+    var similarProductId = 1455;
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: MainTheme.of(context).secondaryBackground,
@@ -94,10 +102,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(25, 20, 0, 0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      25, 20, 0, 0),
                                   child: GestureDetector(
                                     onTap: () {
-                                      Navigator.pop(context); // Navigate back when the icon is tapped
+                                      Navigator.pop(
+                                          context); // Navigate back when the icon is tapped
                                     },
                                     child: Icon(
                                       Icons.arrow_back_ios,
@@ -118,7 +128,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: Image.network(
-                                  widget.mainProductImagePath,
+                                  widget.mainProduct.imagePath,
                                   width: MediaQuery.of(context).size.width,
                                   height:
                                       MediaQuery.of(context).size.height * 0.30,
@@ -139,7 +149,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 Expanded(
                                   flex: 1,
                                   child: Text(
-                                    widget.mainProductName,
+                                    widget.mainProduct.productName,
                                     style: MainTheme.of(context)
                                         .headlineSmall
                                         .override(
@@ -151,7 +161,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 Expanded(
                                   flex: 1,
                                   child: Text(
-                                    widget.mainProductPrice + " €",
+                                    widget.mainProduct.price + " €",
                                     style: MainTheme.of(context).titleLarge,
                                   ),
                                 ),
@@ -292,9 +302,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 scrollDirection: Axis.horizontal,
                                 children: [
                                   ShowProductItemCard(
-                                      price: similarProductPrice,
-                                      imagePath: similarImagePath,
-                                      productName: similarProductName),
+                                      product: Product(
+                                          productId: similarProductId,
+                                          price: similarProductPrice,
+                                          imagePath: similarImagePath,
+                                          productName: similarProductName)),
                                 ],
                               ),
                             ),
@@ -327,7 +339,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                         child: FFButtonWidget(
                           onPressed: () {
-                            print('Button pressed ...');
+                            addToCart();
                           },
                           text: 'Add to Cart',
                           options: FFButtonOptions(

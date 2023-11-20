@@ -6,6 +6,8 @@ import 'package:grocery_hero/Helper/MainTheme.dart';
 import 'package:grocery_hero/Screens/ViewAllProductsScreen.dart';
 import 'package:grocery_hero/widgets/ShowProductItemCard.dart';
 
+import '../models/Product.dart';
+
 class SelectSupermarketScreen extends StatefulWidget {
   const SelectSupermarketScreen({Key? key}) : super(key: key);
 
@@ -242,23 +244,30 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                         padding: EdgeInsets.zero,
                                         primary: false,
                                         scrollDirection: Axis.horizontal,
-                                        children: const [
+                                        children: [
                                           ShowProductItemCard(
-                                              price: "1.50",
-                                              imagePath:
-                                                  "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/obst-gemuese.png",
-                                              productName:
-                                                  "Fruits and Veggies"),
+                                              product: Product(
+                                                  productId: 15488,
+                                                  price: "1.50",
+                                                  imagePath:
+                                                      "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/obst-gemuese.png",
+                                                  productName:
+                                                      "Fruits and Veggies")),
                                           ShowProductItemCard(
-                                              price: "1.50",
-                                              imagePath:
-                                                  "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/kochen-backen.png",
-                                              productName: "Cake and Baking"),
+                                              product: Product(
+                                                  productId: 15588,
+                                                  price: "1.50",
+                                                  imagePath:
+                                                      "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/kochen-backen.png",
+                                                  productName:
+                                                      "Cake and Baking")),
                                           ShowProductItemCard(
-                                              price: "1.50",
-                                              imagePath:
-                                                  "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/getraenke-genussmittel.png",
-                                              productName: "Drinks"),
+                                              product: Product(
+                                                  productId: 874,
+                                                  price: "1.50",
+                                                  imagePath:
+                                                      "https://shop.rewe-static.de/homepage/71fb0622ba2591d33ffd6de81b83e63870a7b5b1/img/category/getraenke-genussmittel.png",
+                                                  productName: "Drinks")),
                                         ],
                                       ),
                                     ),
@@ -330,26 +339,36 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                         scrollDirection: Axis.horizontal,
                                         children: [
                                           ShowProductItemCard(
-                                              price: "1.20",
-                                              imagePath:
-                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/6518610a-3d8c-4225-a5c3-2aeb4e5114c9.webp",
-                                              productName: "Pizza Margherita"),
+                                              product: Product(
+                                                  productId: 54878,
+                                                  price: "1.20",
+                                                  imagePath:
+                                                      "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/6518610a-3d8c-4225-a5c3-2aeb4e5114c9.webp",
+                                                  productName:
+                                                      "Pizza Margherita")),
                                           ShowProductItemCard(
-                                              price: "1.50",
-                                              imagePath:
-                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/148c7e37-89a9-4001-a55d-d8481d736654.webp",
-                                              productName:
-                                                  "Dr. Oetker Knusper-Müsli"),
+                                              product: Product(
+                                                  productId: 57992,
+                                                  price: "1.50",
+                                                  imagePath:
+                                                      "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/148c7e37-89a9-4001-a55d-d8481d736654.webp",
+                                                  productName:
+                                                      "Dr. Oetker Knusper-Müsli")),
                                           ShowProductItemCard(
-                                              price: "1.50",
-                                              imagePath:
-                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/5165f507-ee50-4f54-bfa9-159183426ab1.webp",
-                                              productName: "Coca Cola 1l"),
+                                              product: Product(
+                                                  productId: 8722,
+                                                  price: "1.50",
+                                                  imagePath:
+                                                      "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/5165f507-ee50-4f54-bfa9-159183426ab1.webp",
+                                                  productName: "Coca Cola 1l")),
                                           ShowProductItemCard(
-                                            price: "1.40",
-                                            imagePath:
-                                                "https://verbund.edeka/verbund/presse/mediathek/edeka_preview-logo.jpg?impolicy=4x3&imwidth=500&imdensity=1",
-                                            productName: "More Products >",
+                                            product: Product(
+                                              productId: 648867,
+                                              price: "1.40",
+                                              imagePath:
+                                                  "https://verbund.edeka/verbund/presse/mediathek/edeka_preview-logo.jpg?impolicy=4x3&imwidth=500&imdensity=1",
+                                              productName: "More Products >",
+                                            ),
                                             onTap: () {
                                               Navigator.push(
                                                   context,
@@ -357,7 +376,6 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                                       builder: (context) =>
                                                           ViewAllProductWidget()));
                                             },
-
                                           ),
                                         ],
                                       ),
@@ -430,26 +448,36 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                         scrollDirection: Axis.horizontal,
                                         children: [
                                           ShowProductItemCard(
+                                              product: Product(
+                                                  productId: 68655,
+                                                  price: "1.50",
+                                                  imagePath:
+                                                      "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f0e97564-1ef4-4479-bc57-c07ccdacd15e.webp",
+                                                  productName:
+                                                      "Lorenz Crunchips")),
+                                          ShowProductItemCard(
+                                              product: Product(
+                                                  productId: 825454,
+                                                  price: "1.50",
+                                                  imagePath:
+                                                      "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f1837268-5860-4290-b12f-f5c03aadc290.webp",
+                                                  productName: "Nutella 450g")),
+                                          ShowProductItemCard(
+                                              product: Product(
+                                                  productId: 54878,
+                                                  price: "1.50",
+                                                  imagePath:
+                                                      "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
+                                                  productName:
+                                                      "Monster Energy 0,5 l")),
+                                          ShowProductItemCard(
+                                            product: Product(
+                                              productId: 57878,
                                               price: "1.50",
                                               imagePath:
-                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f0e97564-1ef4-4479-bc57-c07ccdacd15e.webp",
-                                              productName: "Lorenz Crunchips"),
-                                          ShowProductItemCard(
-                                              price: "1.50",
-                                              imagePath:
-                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/f1837268-5860-4290-b12f-f5c03aadc290.webp",
-                                              productName: "Nutella 450g"),
-                                          ShowProductItemCard(
-                                              price: "1.50",
-                                              imagePath:
-                                                  "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp",
-                                              productName:
-                                                  "Monster Energy 0,5 l"),
-                                          ShowProductItemCard(
-                                            price: "1.50",
-                                            imagePath:
-                                                "https://revistaprogresiv.ro/sites/default/files/news/images/penny_logo_002.jpg",
-                                            productName: "More Products >",
+                                                  "https://revistaprogresiv.ro/sites/default/files/news/images/penny_logo_002.jpg",
+                                              productName: "More Products >",
+                                            ),
                                             onTap: () {
                                               Navigator.push(
                                                   context,
