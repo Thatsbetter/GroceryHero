@@ -17,11 +17,8 @@ class ProductDetailsScreen extends StatefulWidget {
 
   const ProductDetailsScreen({
     Key? key,
-    this.productModel,
     required this.mainProduct,
   }) : super(key: key);
-
-  final int? productModel;
 
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
@@ -43,10 +40,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   void addToCart() {
     Cart().addToCart(
-      productModel: widget.productModel ?? 0,
-      productName: widget.mainProduct.productName,
-      productPrice: double.parse(widget.mainProduct.price),
-      productImagePath: widget.mainProduct.imagePath,
+      product: widget.mainProduct,
       quantity: countControllerValue,
     );
 
@@ -62,6 +56,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         "https://res.cloudinary.com/goflink/image/upload/w_300,h_300,c_fill,g_south/product-images-prod/8f674ccd-e8c7-4066-9acd-3eb84b6742a5.webp";
     var similarProductName = "Monster Energy 0,5 l";
     var similarProductPrice = "1.50";
+    var similarProductId = 1455;
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: MainTheme.of(context).secondaryBackground,
@@ -308,6 +303,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 children: [
                                   ShowProductItemCard(
                                       product: Product(
+                                          productId: similarProductId,
                                           price: similarProductPrice,
                                           imagePath: similarImagePath,
                                           productName: similarProductName)),
