@@ -1,3 +1,5 @@
+import 'package:grocery_hero/models/Product.dart';
+
 class Cart {
   // Singleton instance
   static final Cart _instance = Cart._internal();
@@ -14,21 +16,18 @@ class Cart {
 
   // Add a product to the cart
   void addToCart({
-    required int productModel,
-    required String productName,
-    required double productPrice,
-    required String productImagePath,
+    required Product product,
     required int quantity,
   }) {
-    if (_cartItems.containsKey(productModel)) {
+    if (_cartItems.containsKey(product.productId)) {
       // Product is already in the cart, update the quantity
-      _cartItems[productModel]!.quantity += quantity;
+      _cartItems[product.productId]!.quantity += quantity;
     } else {
       // Add a new product to the cart
-      _cartItems[productModel] = CartItem(
-        productName: productName,
-        productPrice: productPrice,
-        productImagePath: productImagePath,
+      _cartItems[product.productId] = CartItem(
+        productName: product.productName,
+        productPrice: product.price,
+        productImagePath: product.imagePath,
         quantity: quantity,
       );
     }
@@ -47,7 +46,7 @@ class Cart {
 
 class CartItem {
   final String productName;
-  final double productPrice;
+  final String productPrice;
   final String productImagePath;
   int quantity;
 
