@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:grocery_hero/Helper/FlutterFlowWidgets.dart';
+import 'package:grocery_hero/service/PaymentService.dart';
+import 'package:grocery_hero/widgets/CartItemWidget.dart';
 
-import '../Helper/FlutterFlowCountController.dart';
 import '../Helper/MainTheme.dart';
 import '../models/Cart.dart';
 
@@ -15,7 +17,6 @@ class ViewCartScreen extends StatefulWidget {
 }
 
 class _ViewCartScreenState extends State<ViewCartScreen> {
-  int countControllerValue = 0;
   Cart _cart = Cart();
 
   void removeFromCart(int productId) {
@@ -80,138 +81,8 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: _cart.cartItems.values.map((cartItem) {
-            return buildCartItem(cartItem: cartItem);
+            return CartItemWidget(cartItem: cartItem);
           }).toList(),
-        ),
-      ),
-    );
-  }
-
-  Widget buildCartItem({required CartItem cartItem}) {
-    return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.96,
-        height: 120,
-        decoration: BoxDecoration(
-          color: MainTheme.of(context).secondaryBackground,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 4,
-              color: Color(0x3A000000),
-              offset: Offset(0, 2),
-            )
-          ],
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: MainTheme.of(context).secondaryBackground,
-            width: 0,
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      cartItem.product.imagePath,
-                      width: 74,
-                      height: 74,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(1.00, 0.00),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                        child: GestureDetector(
-                          onTap: () {
-                            removeFromCart(cartItem.product.productId);
-                          },
-                          child: Icon(
-                            Icons.cancel_sharp,
-                            color: MainTheme.of(context).error,
-                            size: 28,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      cartItem.product.productName,
-                      style: MainTheme.of(context).titleMedium,
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 16, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: 130,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: MainTheme.of(context).secondaryBackground,
-                              borderRadius: BorderRadius.circular(8),
-                              shape: BoxShape.rectangle,
-                              border: Border.all(
-                                color: MainTheme.of(context).primaryBackground,
-                                width: 1,
-                              ),
-                            ),
-                            child: FlutterFlowCountController(
-                              decrementIconBuilder: (enabled) => Icon(
-                                Icons.remove_rounded,
-                                color: enabled
-                                    ? MainTheme.of(context).primaryText
-                                    : MainTheme.of(context).secondaryText,
-                                size: 20,
-                              ),
-                              incrementIconBuilder: (enabled) => Icon(
-                                Icons.add_rounded,
-                                color: enabled
-                                    ? MainTheme.of(context).primaryColor
-                                    : MainTheme.of(context).secondaryText,
-                                size: 20,
-                              ),
-                              countBuilder: (count) => Text(
-                                cartItem.quantity.toString(),
-                                style: MainTheme.of(context).bodyMedium,
-                              ),
-                              count: countControllerValue,
-                              updateCount: (count) =>
-                                  setState(() => countControllerValue = count),
-                              stepSize: 1,
-                            ),
-                          ),
-                          Text(
-                            cartItem.product.price + ' €',
-                            style: MainTheme.of(context).titleMedium,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );
@@ -232,7 +103,10 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
       ),
       child: FFButtonWidget(
         onPressed: () {
-          print('Button pressed ...');
+          final double amount = calculateAmount();
+          if (amount != 0) {
+            confirmPayment(amount);
+          }
         },
         text: 'Publish list',
         options: FFButtonOptions(
@@ -253,5 +127,66 @@ class _ViewCartScreenState extends State<ViewCartScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> initPaymentSheet(final String paymentIntent) async {
+    try {
+      await Stripe.instance.initPaymentSheet(
+        paymentSheetParameters: SetupPaymentSheetParameters(
+          // Main params
+          paymentIntentClientSecret: paymentIntent,
+          merchantDisplayName: 'Karid',
+          style: ThemeMode.light,
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+      rethrow;
+    }
+  }
+
+  Future<void> confirmPayment(final double amount) async {
+    try {
+      final data = await PaymentService.createTestPaymentSheet(amount);
+      final String paymentIntent = data['paymentIntent'];
+      Stripe.publishableKey = data['publishableKey'];
+      // 3. display the payment sheet.
+      await initPaymentSheet(paymentIntent);
+      await Stripe.instance.presentPaymentSheet();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Payment succesfully completed'),
+        ),
+      );
+      setState(() {
+        _cart.clearCart();
+
+      });
+    } on Exception catch (e) {
+      await PaymentService.reportErrorToBackend(e);
+      if (e is StripeException) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error from Stripe: ${e.error.localizedMessage}'),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Unforeseen error: ${e}'),
+          ),
+        );
+      }
+    }
+  }
+
+  double calculateAmount() {
+    return _cart.cartItems.values.fold(
+        0.0,
+        (total, item) =>
+            total + (double.parse(item.product.price) * item.quantity));
   }
 }

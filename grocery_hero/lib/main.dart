@@ -3,7 +3,8 @@ import 'package:grocery_hero/Screens/MapScreen.dart';
 import 'package:grocery_hero/Screens/SelectSupermarketScreen.dart';
 import 'package:grocery_hero/Screens/ViewCartScreen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
