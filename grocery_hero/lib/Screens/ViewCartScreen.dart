@@ -18,7 +18,6 @@ class ViewCartScreen extends StatefulWidget {
 }
 
 class _ViewCartScreenState extends State<ViewCartScreen> {
-  Cart _cart = Cart();
 
   @override
   Widget build(BuildContext context) {
