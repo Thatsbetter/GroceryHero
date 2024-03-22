@@ -5,16 +5,16 @@ import '../Helper/FlutterFlowCountController.dart';
 import '../Helper/MainTheme.dart';
 import '../models/Cart.dart';
 
-class CartItemWidget extends StatefulWidget {
+class EditCartItemWidget extends StatefulWidget {
   final CartItem cartItem;
 
-  const CartItemWidget({Key? key, required this.cartItem}) : super(key: key);
+  const EditCartItemWidget({Key? key, required this.cartItem}) : super(key: key);
 
   @override
-  _CartItemWidgetState createState() => _CartItemWidgetState();
+  _EditCartItemWidgetState createState() => _EditCartItemWidgetState();
 }
 
-class _CartItemWidgetState extends State<CartItemWidget> {
+class _EditCartItemWidgetState extends State<EditCartItemWidget> {
 
   @override
   Widget build(BuildContext context) {

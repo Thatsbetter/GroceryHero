@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:grocery_hero/models/Product.dart';
 
-class Cart {
+class Cart extends ChangeNotifier {
   // Singleton instance
   static final Cart _instance = Cart._internal();
 
@@ -10,6 +11,7 @@ class Cart {
 
   // Map to store products in the cart with their quantities
   final Map<int, CartItem> _cartItems = {};
+  bool isPublished = false;
 
   // Get the cart items
   Map<int, CartItem> get cartItems => _cartItems;
@@ -29,16 +31,30 @@ class Cart {
         quantity: quantity,
       );
     }
+
+    // Notify listeners of the change
+    notifyListeners();
   }
 
   // Remove a product from the cart
-  void removeFromCart(int productModel) {
-    _cartItems.remove(productModel);
+  void removeFromCart(int productId) {
+    _cartItems.remove(productId);
+
+    // Notify listeners of the change
+    notifyListeners();
   }
 
   // Clear the entire cart
   void clearCart() {
     _cartItems.clear();
+
+    // Notify listeners of the change
+    notifyListeners();
+  }
+
+  void changePublishState() {
+    isPublished ? isPublished = false : isPublished = true;
+    notifyListeners();
   }
 }
 
