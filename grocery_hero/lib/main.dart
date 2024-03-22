@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_hero/Screens/MapScreen.dart';
 import 'package:grocery_hero/Screens/SelectSupermarketScreen.dart';
 import 'package:grocery_hero/Screens/ViewCartScreen.dart';
 import 'package:grocery_hero/models/Cart.dart';
@@ -39,11 +38,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
-    MapScreen(),
-    SelectSupermarketScreen(),
-    ViewCartScreen()
-  ];
+  final List<Widget> _screens = [SelectSupermarketScreen(), ViewCartScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.local_grocery_store),
             label: 'Buy',
