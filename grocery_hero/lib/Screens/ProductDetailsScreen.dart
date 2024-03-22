@@ -32,6 +32,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   void initState() {
     super.initState();
+
+    final cart = Provider.of<Cart>(context, listen: false);
+    countControllerValue =
+        cart.cartItems.containsKey(widget.mainProduct.productId)
+            ? cart.cartItems[widget.mainProduct.productId]!.quantity
+            : 0;
   }
 
   @override
@@ -365,8 +371,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                               child: FFButtonWidget(
                                 onPressed: () {
-                                  addToCart(context, cart,
-                                      countControllerValue);
+                                  addToCart(
+                                      context, cart, countControllerValue);
                                 },
                                 text: 'Add to Cart',
                                 options: FFButtonOptions(

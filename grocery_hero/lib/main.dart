@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:grocery_hero/Screens/MapScreen.dart';
 import 'package:grocery_hero/Screens/SelectSupermarketScreen.dart';
 import 'package:grocery_hero/Screens/ViewCartScreen.dart';
+import 'package:grocery_hero/models/Cart.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,12 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (context) => Cart(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
