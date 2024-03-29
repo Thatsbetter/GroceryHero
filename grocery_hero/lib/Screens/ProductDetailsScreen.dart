@@ -4,6 +4,7 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery_hero/Helper/CustomSnackbar.dart';
 import 'package:grocery_hero/Helper/FlutterFlowCountController.dart';
 import 'package:grocery_hero/Helper/FlutterFlowWidgets.dart';
 import 'package:grocery_hero/models/Product.dart';
@@ -35,9 +36,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
     final cart = Provider.of<Cart>(context, listen: false);
     countControllerValue =
-        cart.cartItems.containsKey(widget.mainProduct.productId)
-            ? cart.cartItems[widget.mainProduct.productId]!.quantity
-            : 0;
+    cart.cartItems.containsKey(widget.mainProduct.productId)
+        ? cart.cartItems[widget.mainProduct.productId]!.quantity
+        : 0;
   }
 
   @override
@@ -46,20 +47,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   void addToCart(BuildContext context, Cart cart, int quantity) {
+    final screenSize =  MediaQuery.of(context).size;
+    final snackbarHeight = screenSize.height *0.04;
+    final snackbarWidth = screenSize.width*0.9;
+    final bottomMargin = screenSize.height/10;
+    var sideMargin = screenSize.width/8;
+
     if (!cart.isPublished) {
-      // Use Provider.of<Cart> to access the cart instance
       cart.addToCart(
         product: widget.mainProduct,
         quantity: quantity,
       );
-
-      final snackBar = SnackBar(content: Text('Product added to cart'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      final snackbarMessage = 'Product added to cart';
+      CustomSnackbar.show(context, snackbarMessage,height:snackbarHeight,width: snackbarWidth,backgroundColor: Colors.lightGreen,bottomMargin: bottomMargin,sideMargin: sideMargin);
     } else {
-      final snackBar = SnackBar(
-          content:
-              Text('You Already published a list, Cancel your List first.'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      final snackbarMessage = 'You Already published a list, Cancel your List first.';
+      CustomSnackbar.show(context, snackbarMessage,height:snackbarHeight,width: snackbarWidth,backgroundColor: Colors.redAccent,bottomMargin: bottomMargin,sideMargin: sideMargin);
     }
   }
 
@@ -72,7 +75,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     var similarProductId = 1455;
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: MainTheme.of(context).secondaryBackground,
+      backgroundColor: MainTheme
+          .of(context)
+          .secondaryBackground,
       body: ChangeNotifierProvider.value(
         value: Cart(), // Provide an instance of your Cart class
         child: Consumer<Cart>(
@@ -83,23 +88,37 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 Expanded(
                     flex: 9,
                     child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 1,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .height * 1,
                       decoration: BoxDecoration(
-                        color: MainTheme.of(context).secondaryBackground,
+                        color: MainTheme
+                            .of(context)
+                            .secondaryBackground,
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: Image.asset(
+                          image: Image
+                              .asset(
                             'assets/images/Group_6821.png',
-                          ).image,
+                          )
+                              .image,
                         ),
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(0),
                         child: BackdropFilter(
                           filter: ImageFilter.blur(
-                            sigmaX: MainTheme.of(context).sigmaX,
-                            sigmaY: MainTheme.of(context).sigmaY,
+                            sigmaX: MainTheme
+                                .of(context)
+                                .sigmaX,
+                            sigmaY: MainTheme
+                                .of(context)
+                                .sigmaY,
                           ),
                           child: SingleChildScrollView(
                             child: Padding(
@@ -109,8 +128,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height *
+                                    width: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width,
+                                    height: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .height *
                                         0.1,
                                     decoration: BoxDecoration(
                                       color: Color(0x00FFFFFF),
@@ -118,12 +143,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  25, 20, 0, 0),
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              25, 20, 0, 0),
                                           child: GestureDetector(
                                             onTap: () {
                                               Navigator.pop(
@@ -150,10 +175,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         child: Image.network(
                                           widget.mainProduct.imagePath,
                                           width:
-                                              MediaQuery.of(context).size.width,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
+                                          MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width,
+                                          height: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .height *
                                               0.30,
                                           fit: BoxFit.fitHeight,
                                         ),
@@ -161,8 +190,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     ),
                                   ),
                                   Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height *
+                                    width: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width,
+                                    height: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .height *
                                         0.1,
                                     decoration: BoxDecoration(
                                       color: Color(0x30F1F4F8),
@@ -174,19 +209,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           flex: 1,
                                           child: Text(
                                             widget.mainProduct.productName,
-                                            style: MainTheme.of(context)
+                                            style: MainTheme
+                                                .of(context)
                                                 .headlineSmall
                                                 .override(
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 30,
-                                                ),
+                                              fontFamily: 'Poppins',
+                                              fontSize: 30,
+                                            ),
                                           ),
                                         ),
                                         Expanded(
                                           flex: 1,
                                           child: Text(
                                             widget.mainProduct.price + " €",
-                                            style: MainTheme.of(context)
+                                            style: MainTheme
+                                                .of(context)
                                                 .titleLarge,
                                           ),
                                         ),
@@ -222,14 +259,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                   child: Icon(
                                                     Icons
                                                         .sticky_note_2_outlined,
-                                                    color: MainTheme.of(context)
+                                                    color: MainTheme
+                                                        .of(context)
                                                         .primaryText,
                                                     size: 24,
                                                   ),
                                                 ),
                                                 Text(
                                                   'Product Detail',
-                                                  style: MainTheme.of(context)
+                                                  style: MainTheme
+                                                      .of(context)
                                                       .bodyMedium,
                                                 ),
                                               ],
@@ -238,17 +277,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(5, 0, 0, 0),
                                               child: Container(
-                                                width: MediaQuery.of(context)
+                                                width: MediaQuery
+                                                    .of(context)
                                                     .size
                                                     .width,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
+                                                height: MediaQuery
+                                                    .of(context)
+                                                    .size
+                                                    .height *
                                                     0.04,
                                                 decoration: BoxDecoration(),
                                                 child: Text(
                                                   'Lorem ipsum dolor sit amet, consectetur adipiscing...',
-                                                  style: MainTheme.of(context)
+                                                  style: MainTheme
+                                                      .of(context)
                                                       .bodySmall,
                                                 ),
                                               ),
@@ -261,7 +303,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                       .fromSTEB(5, 0, 0, 0),
                                                   child: Text(
                                                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                                                    style: MainTheme.of(context)
+                                                    style: MainTheme
+                                                        .of(context)
                                                         .bodySmall,
                                                   ),
                                                 ),
@@ -272,15 +315,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               tapBodyToExpand: true,
                                               tapBodyToCollapse: true,
                                               headerAlignment:
-                                                  ExpandablePanelHeaderAlignment
-                                                      .center,
+                                              ExpandablePanelHeaderAlignment
+                                                  .center,
                                               hasIcon: true,
                                               expandIcon:
-                                                  Icons.chevron_right_rounded,
+                                              Icons.chevron_right_rounded,
                                               collapseIcon: Icons
                                                   .keyboard_arrow_down_rounded,
                                               iconSize: 24,
-                                              iconColor: MainTheme.of(context)
+                                              iconColor: MainTheme
+                                                  .of(context)
                                                   .secondaryText,
                                             ),
                                           ),
@@ -296,20 +340,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  25, 0, 0, 0),
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              25, 0, 0, 0),
                                           child: Text(
                                             'Similar Products',
                                             textAlign: TextAlign.start,
-                                            style: MainTheme.of(context)
+                                            style: MainTheme
+                                                .of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: MainTheme.of(context)
-                                                      .primaryBtnText,
-                                                  fontSize: 19,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
+                                              fontFamily: 'Poppins',
+                                              color: MainTheme
+                                                  .of(context)
+                                                  .primaryBtnText,
+                                              fontSize: 19,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -319,10 +365,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 0, 45),
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width,
+                                      width: MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width,
                                       height:
-                                          MediaQuery.of(context).size.height *
-                                              0.18,
+                                      MediaQuery
+                                          .of(context)
+                                          .size
+                                          .height *
+                                          0.18,
                                       decoration: BoxDecoration(
                                         color: Color(0x00FFFFFF),
                                         borderRadius: BorderRadius.circular(12),
@@ -338,7 +390,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                   price: similarProductPrice,
                                                   imagePath: similarImagePath,
                                                   productName:
-                                                      similarProductName)),
+                                                  similarProductName)),
                                         ],
                                       ),
                                     ),
@@ -353,10 +405,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 1,
                     decoration: BoxDecoration(
-                      color: MainTheme.of(context).secondaryBackground,
+                      color: MainTheme
+                          .of(context)
+                          .secondaryBackground,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Padding(
@@ -368,14 +428,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Expanded(
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                               child: FFButtonWidget(
                                 onPressed: () {
                                   addToCart(
                                       context, cart, countControllerValue);
                                 },
                                 text: !cart.cartItems.containsKey(
-                                        widget.mainProduct.productId)
+                                    widget.mainProduct.productId)
                                     ? "Add to Cart"
                                     : "Update Cart",
                                 options: FFButtonOptions(
@@ -387,10 +447,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       0, 0, 0, 0),
                                   color: Colors.blue,
                                   textStyle:
-                                      MainTheme.of(context).titleSmall.override(
-                                            fontFamily: 'Poppins',
-                                            color: Colors.white,
-                                          ),
+                                  MainTheme
+                                      .of(context)
+                                      .titleSmall
+                                      .override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.white,
+                                  ),
                                   borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1,
@@ -403,7 +466,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Expanded(
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                              EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                               child: Container(
                                 width: double.infinity,
                                 height: double.infinity,
@@ -417,32 +480,37 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   ),
                                 ),
                                 child: FlutterFlowCountController(
-                                  decrementIconBuilder: (enabled) => FaIcon(
-                                    FontAwesomeIcons.minus,
-                                    color: enabled
-                                        ? Color(0xDD000000)
-                                        : Color(0xFFEEEEEE),
-                                    size: 20,
-                                  ),
-                                  incrementIconBuilder: (enabled) => FaIcon(
-                                    FontAwesomeIcons.plus,
-                                    color: enabled
-                                        ? Colors.blue
-                                        : Color(0xFFEEEEEE),
-                                    size: 20,
-                                  ),
-                                  countBuilder: (count) => Text(
-                                    count.toString(),
-                                    style: GoogleFonts.getFont(
-                                      'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                    ),
-                                  ),
+                                  decrementIconBuilder: (enabled) =>
+                                      FaIcon(
+                                        FontAwesomeIcons.minus,
+                                        color: enabled
+                                            ? Color(0xDD000000)
+                                            : Color(0xFFEEEEEE),
+                                        size: 20,
+                                      ),
+                                  incrementIconBuilder: (enabled) =>
+                                      FaIcon(
+                                        FontAwesomeIcons.plus,
+                                        color: enabled
+                                            ? Colors.blue
+                                            : Color(0xFFEEEEEE),
+                                        size: 20,
+                                      ),
+                                  countBuilder: (count) =>
+                                      Text(
+                                        count.toString(),
+                                        style: GoogleFonts.getFont(
+                                          'Roboto',
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                        ),
+                                      ),
                                   count: countControllerValue,
-                                  updateCount: (count) => setState(
-                                      () => countControllerValue = count),
+                                  updateCount: (count) =>
+                                      setState(
+                                              () =>
+                                          countControllerValue = count),
                                   stepSize: 1,
                                 ),
                               ),
