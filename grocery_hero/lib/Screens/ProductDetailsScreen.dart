@@ -374,7 +374,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   addToCart(
                                       context, cart, countControllerValue);
                                 },
-                                text: 'Add to Cart',
+                                text: !cart.cartItems.containsKey(
+                                        widget.mainProduct.productId)
+                                    ? "Add to Cart"
+                                    : "Update Cart",
                                 options: FFButtonOptions(
                                   width: double.infinity,
                                   height: double.infinity,
