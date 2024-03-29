@@ -6,14 +6,14 @@ import '../Helper/MainTheme.dart';
 import '../models/Product.dart';
 import '../widgets/ProductList.dart';
 
-class ViewAllProductWidget extends StatefulWidget {
-  const ViewAllProductWidget({Key? key}) : super(key: key);
+class ViewAllProductScreen extends StatefulWidget {
+  const ViewAllProductScreen({Key? key}) : super(key: key);
 
   @override
-  _ViewAllProductWidgetState createState() => _ViewAllProductWidgetState();
+  _ViewAllProductScreenState createState() => _ViewAllProductScreenState();
 }
 
-class _ViewAllProductWidgetState extends State<ViewAllProductWidget> {
+class _ViewAllProductScreenState extends State<ViewAllProductScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   TextEditingController? textController;

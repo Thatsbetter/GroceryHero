@@ -44,7 +44,7 @@ class _FlutterFlowCountControllerState
   bool get canIncrement => maximum == null || count + stepSize <= maximum!;
 
   void _decrementCounter() {
-    if (canDecrement) {
+    if (canDecrement && count - stepSize >= 0) {
       setState(() => widget.updateCount(count - stepSize));
     }
   }

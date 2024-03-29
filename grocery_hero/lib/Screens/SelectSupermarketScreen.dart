@@ -374,7 +374,7 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          ViewAllProductWidget()));
+                                                          ViewAllProductScreen()));
                                             },
                                           ),
                                         ],
@@ -483,7 +483,7 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          ViewAllProductWidget()));
+                                                          ViewAllProductScreen()));
                                             },
                                           ),
                                         ],
