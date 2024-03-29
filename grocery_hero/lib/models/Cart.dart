@@ -23,7 +23,7 @@ class Cart extends ChangeNotifier {
   }) {
     if (_cartItems.containsKey(product.productId)) {
       // Product is already in the cart, update the quantity
-      _cartItems[product.productId]!.quantity += quantity;
+      _cartItems[product.productId]!.quantity = quantity;
     } else {
       // Add a new product to the cart
       _cartItems[product.productId] = CartItem(
