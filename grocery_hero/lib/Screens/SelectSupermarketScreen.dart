@@ -106,7 +106,6 @@ class _SelectSupermarketScreenState extends State<SelectSupermarketScreen> {
                                   Expanded(
                                     child: TextFormField(
                                       controller: textController,
-                                      autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         hintText: '[Some hint text...]',
